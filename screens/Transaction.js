@@ -149,31 +149,17 @@ export default class TransactionScreen extends Component {
   initiateBookReturn = async (bookId, studentId, bookName, studentName) => {
     //adicionar uma transação
     db.collection("transactions").add({
-      student_id: studentId,
-      student_name: studentName,
-      book_id: bookId,
-      book_name: bookName,
-      date: firebase.firestore.Timestamp.now().toDate(),
-      transaction_type: "return"
+      
     });
     //alterar status do livro
     db.collection("books")
-      .doc(bookId)
-      .update({
-        is_book_available: true
-      });
+      
     //alterar o número de livros retirados pelo aluno
     db.collection("students")
-      .doc(studentId)
-      .update({
-        number_of_books_issued: firebase.firestore.FieldValue.increment(-1)
-      });
+     
 
     // Atualizando o estado local
-    this.setState({
-      bookId: "",
-      studentId: ""
-    });
+    
   };
 
   
